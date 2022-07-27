@@ -1,2 +1,4 @@
 app/* linguist-documentation=false
-app/* linguist-vendored
+res/* linguist-vendored
+manifest/* linguist-vendored
+Gradle Scripts/* linguist-vendored
