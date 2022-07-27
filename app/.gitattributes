@@ -1,4 +1,3 @@
-app/* linguist-documentation=false
 res/* linguist-vendored
 manifest/* linguist-vendored
 Gradle Scripts/* linguist-vendored
