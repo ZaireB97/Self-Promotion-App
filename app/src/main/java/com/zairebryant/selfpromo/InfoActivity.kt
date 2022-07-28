@@ -4,10 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import com.zairebryant.selfpromo.databinding.ActivityInfoBinding
 import com.zairebryant.selfpromo.databinding.ActivityInfoBinding.inflate
-import kotlinx.android.synthetic.main.activity_info.*
 
 
 class InfoActivity : AppCompatActivity() {
@@ -17,7 +17,7 @@ class InfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityInfoBinding.inflate(layoutInflater)
+        binding = inflate(layoutInflater)
         val myView = binding.root
         setContentView(myView)
 
@@ -31,7 +31,8 @@ class InfoActivity : AppCompatActivity() {
         val spinnerAdapter =
             ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerValues)
 
-        spinner_drop_down.adapter = spinnerAdapter
+        val spinnerDropDown = findViewById<Spinner>(R.id.spinner_drop_down)
+        spinnerDropDown.adapter = spinnerAdapter
     }
 
 

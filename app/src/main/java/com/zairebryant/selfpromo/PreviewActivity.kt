@@ -1,17 +1,23 @@
 package com.zairebryant.selfpromo
 
+
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.annotation.RequiresApi
-import kotlinx.android.synthetic.main.activity_preview.*
-import java.io.Serializable
+import androidx.room.Room
+import com.zairebryant.selfpromo.databinding.ActivityMainBinding
+
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import com.zairebryant.selfpromo.databinding.ActivityPreviewBinding
+
 
 class PreviewActivity : AppCompatActivity() {
 
 
+    private lateinit var binding: ActivityPreviewBinding
     lateinit var message:Message
     lateinit var messagePreviewText:String
 
@@ -19,11 +25,25 @@ class PreviewActivity : AppCompatActivity() {
     @RequiresApi(33)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_preview)
+        val binding = ActivityPreviewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setUpButton()
         val messagePreviewText: String = displayMessage()
-        text_view_message.text = messagePreviewText
+        binding.textViewMessage.text = messagePreviewText
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -37,7 +57,8 @@ class PreviewActivity : AppCompatActivity() {
 
     @RequiresApi(33)
     private fun displayMessage(): String {
-        message = intent.getSerializableExtra("Message", Message::class.java) as Message
+
+        message = intent.getSerializableExtra("Message") as Message
         messagePreviewText = """
                 Hello ${message.contactName},
                 
@@ -52,11 +73,12 @@ class PreviewActivity : AppCompatActivity() {
                 Thanks and best regards.
                
             """.trimIndent()
+
         return messagePreviewText
     }
 
     private fun setUpButton(){
-        send_message_button.setOnClickListener{
+        binding.sendMessageButton.setOnClickListener(){
             //Send Message Intent
 
             val intent = Intent(Intent.ACTION_SENDTO).apply {
@@ -67,5 +89,19 @@ class PreviewActivity : AppCompatActivity() {
             startActivity(intent)
             }
         }
+
+    @RequiresApi(33)
+    private fun addToDatabase(newMessage:String){
+
+        message = intent.getSerializableExtra("Message") as Message
+
+
+
+        GlobalScope.launch{
+
+
+
+        }
+    }
 
     }

@@ -1,10 +1,14 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+//    kotlin("android.extensions")
 
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
 
 }
+
+
 
 
 android {
@@ -12,13 +16,13 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    compileSdk 33
+    compileSdk 32
 
 
     defaultConfig {
         applicationId "com.zairebryant.selfpromo"
         minSdk 31
-        targetSdk 33
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
@@ -38,9 +42,26 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    sourceSets {
+        main {
+            java {
+                srcDirs 'src/main/java', 'src/main/java/database'
+            }
+        }
+    }
 }
+apply plugin: "kotlin-kapt"
 
 dependencies {
+
+
+    implementation "androidx.room:room-runtime:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
+//    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+//    kapt "androidx.room:room-compiler:$room_version"
 
 
     implementation 'androidx.cardview:cardview:1.0.0'
